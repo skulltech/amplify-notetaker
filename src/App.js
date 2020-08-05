@@ -89,15 +89,13 @@ function App() {
     return (
         <div className="flex flex-column items-center justify-center pa3 bg-washed-red">
             <h1 className="code f2-l">Amplify Notetaker</h1>
-            <form className="mb3"
-                  onSubmit={handleAddNote}>
-                <input type="text" className="pa2 f4" placeholder="Write your note" onChange={handleChangeNote}
-                       value={note}/>
+            <form className="mb3" onSubmit={handleAddNote}>
+                <input type="text" className="pa2 f4" placeholder="Write your note" onChange={handleChangeNote} value={note}/>
                 <button className="pa2 f4" type="submit">{id ? "Update Note" : "Add Note"}</button>
             </form>
             <div>
                 {notes.map(item => (
-                    <div key={item.id} className="flex items-center">
+                    <div key={item.id} className="flex items-center justify-center">
                         <li className="list pa1 f3" onClick={() => handleSetNote(item)}>
                             {item.note}
                         </li>
