@@ -51,7 +51,7 @@ function App() {
 
     useEffect(() => {
         fetchNotes();
-        const createNoteListener = getUser().then(user => {
+        getUser().then(user => {
             return API.graphql(graphqlOperation(onCreateNote, {owner: user.username })
             ).subscribe({
                 next: value => {
@@ -60,7 +60,7 @@ function App() {
                 }
             })
         })
-        const updateNoteListener = getUser().then(user => {
+        getUser().then(user => {
             return API.graphql(graphqlOperation(onUpdateNote, {owner: user.username})
             ).subscribe({
                 next: value => {
@@ -74,7 +74,7 @@ function App() {
                 }
             })
         })
-        const deleteNoteListener = getUser().then(user => {
+        getUser().then(user => {
             return API.graphql(graphqlOperation(onDeleteNote, {owner: user.username})
             ).subscribe({
                 next: value => {
@@ -84,11 +84,6 @@ function App() {
                 }
             })
         })
-        return () => {
-            createNoteListener.unsubscribe();
-            updateNoteListener.unsubscribe()
-            deleteNoteListener.unsubscribe()
-        }
     }, [])
 
     return (
